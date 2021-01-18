@@ -11,10 +11,11 @@ const webRequestFlags = [
 window.chrome.webRequest.onBeforeRequest.addListener(
   page => {
     console.log('page blocked - ' + page.url);
-
-    return {
-      cancel: true,
-    };
+    if(page.url.includes('youtube')){
+        return {cancel: false};
+    }else{
+        return {cancel: true};   
+    }
   },
   filter,
   webRequestFlags,
