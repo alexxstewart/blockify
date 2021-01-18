@@ -32,7 +32,7 @@ window.chrome.webRequest.onBeforeRequest.addListener(
         })
 
         // and lastly check that the extension js and css files are not being blocked
-        if(page.url === "chrome-extension://dpmjfigagghaaeikgmjicfkneffapjjb/popup.html" || page.url === "chrome-extension://dpmjfigagghaaeikgmjicfkneffapjjb/popupStyle.css"){
+        if(page.url.includes("popup.html") || page.url.includes("popup.js") || page.url.includes("popupStyle.css")){
             flag = false
         }
 
