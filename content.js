@@ -1,14 +1,32 @@
-alert('heelo there')
+//BLOCK WORDS
+findString = function findText(text) {
+  if(window.find(text)){
+    document.documentElement.innerHTML = '';
+    document.documentElement.innerHTML = 'This site is blocked';
+    document.documentElement.scrollTop = 0;
+  };
+}
 
-function _getCurrentTab(callback){ //Take a callback
-    var theTab;
-    chrome.tabs.query({active:true, currentWindow:true},function(tab){
-        callback(tab); //call the callback with argument
-    });
-};
+findString("WordToBlock");
 
-function _displayTab(tab){ //define your callback function
-    console.log(tab);
- };
+//BLOCK THE PARTIAL DOMAINS
+findURL = function changeURL(text){
+  var current = window.location.href;
+  if(current === text){
+    window.location.replace("https://www.google.com");
+  }
+}
 
- _getCurrentTab(_displayTab);
+//BLOCK THE ENTIRE DOMAIN WITH THE FOLLOWING FUNCTION
+findAllURL = function changeAllURL(text){
+  var current = window.location.href;
+  if(current.startsWith(text)){
+    document.documentElement.innerHTML = '';
+    document.documentElement.innerHTML = 'Domain is blocked';
+    document.documentElement.scrollTop = 0;
+  }
+}
+
+
+findURL("https://www.quora.com/");
+findAllURL("https://www.facebook.com/");

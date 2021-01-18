@@ -1,16 +1,9 @@
 {
-    "name": "blockify",
-    "version": "1.0",
-    "manifest_version": 2,
-    "content_scripts": [
-        {
-            "matches": ["<all_urls>"],
-            "js": ["content.js"]
-        }
-    ],
-    "browser_action": {
-        "default_popup": "popup.html",
-        "default_title": "Blockify"
-    },
-    "permissions": ["tabs"]
+  "manifest_version": 2,
+  "name": "Blockify",
+  "version": "1.0.0",
+  "content_scripts": [{
+    "js": ["content.js"],
+    "matches": ["http://*/*", "https://*/*"]
+  }]
 }
