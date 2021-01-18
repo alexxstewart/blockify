@@ -6,3 +6,8 @@ body {
 h1 {
   color: red;
 }
+
+.url-div {
+  background-color: white;
+  color: black;
+}
