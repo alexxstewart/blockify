@@ -30,6 +30,9 @@ const showBlackList = () => {
     blacklist.forEach((item, index) => {
         createUrlElement(item, index)
     })
+
+    // send the changed list to background script
+    sendInfoToBackground()
 }
 
 const showWhiteList = () => {
@@ -48,6 +51,9 @@ const showWhiteList = () => {
     whitelist.forEach((item, index) => {
         createUrlElement(item, index)
     })
+
+    // send new list to the background script
+    sendInfoToBackground()
 }
 
 const saveURL = () => {
@@ -120,6 +126,13 @@ const removeListElements = () => {
     }
 
     console.log('removing elements from dom')
+}
+
+const sendInfoToBackground = () => {
+    const port = chrome.extension.connect({
+        name: "Sample Communication"
+    });
+    inBlackList ? port.postMessage({type: 'blacklist', list: blacklist}) : port.postMessage({type: 'whitelist', list: whitelist})
 }
 
 blackListButton.addEventListener('click', showBlackList)
