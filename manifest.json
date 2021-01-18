@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Blockify",
   "version": "1.0.0",
-  "permissions": ["webRequest", "webRequestBlocking", "<all_urls>"],
+  "permissions": ["webRequest", "webRequestBlocking", "storage", "<all_urls>"],
   "content_scripts": [{
     "js": ["content.js"],
     "matches": ["<all_urls>"]

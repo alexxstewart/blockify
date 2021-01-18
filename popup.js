@@ -72,6 +72,8 @@ const saveURL = () => {
         // reprint the list
         inBlackList ? showBlackList() : showWhiteList()
     }
+
+    saveListsToLocalStorage()
 }
 
 const createUrlElement = (text, index) => {
@@ -115,6 +117,7 @@ const removeElement = (item) => {
         })
         showWhiteList()
     }
+    saveListsToLocalStorage()
 }
 
 const removeListElements = () => {
@@ -124,8 +127,6 @@ const removeListElements = () => {
     while (parent.firstChild) {
         parent.firstChild.remove()
     }
-
-    console.log('removing elements from dom')
 }
 
 const sendInfoToBackground = () => {
@@ -135,6 +136,30 @@ const sendInfoToBackground = () => {
     inBlackList ? port.postMessage({type: 'blacklist', list: blacklist}) : port.postMessage({type: 'whitelist', list: whitelist})
 }
 
+const saveListsToLocalStorage = () => {
+    const data = {currentState: inBlackList,
+                blacklist: blacklist,
+                whitelist: whitelist}
+    chrome.storage.local.set({value: data}, function(){
+        console.log('saved')
+    });
+}
+
+const getLocalSaves = () => {
+    chrome.storage.local.get("value",function(storageData){
+        data = storageData.value
+        blacklist = data.blacklist
+        whitelist = data.whitelist
+        inBlackList = data.currentState
+        console.log(blacklist, whitelist, inBlackList)
+
+        // show the list for the user
+        inBlackList ? showBlackList() : showWhiteList()
+    });
+}
+
 blackListButton.addEventListener('click', showBlackList)
 whiteListButton.addEventListener('click', showWhiteList)
 saveButton.addEventListener('click', saveURL)
+
+getLocalSaves()
