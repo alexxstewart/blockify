@@ -1,4 +1,6 @@
 //BLOCK WORDS
+console.log('hello there')
+/*
 findString = function findText(text) {
   if(window.find(text)){
     document.documentElement.innerHTML = '';
@@ -28,5 +30,6 @@ findAllURL = function changeAllURL(text){
 }
 
 
-findURL("https://www.quora.com/");
-findAllURL("https://www.facebook.com/");
+//findURL("https://www.quora.com/");
+//findAllURL("https://www.facebook.com/");
+*/
