@@ -61,6 +61,7 @@ const createUrlElement = (text, index) => {
     // create the button for the url element
     const urlRemoveButton = document.createElement('button')
     urlRemoveButton.setAttribute('class', 'url-remove-button')
+    urlRemoveButton.innerHTML = 'Remove'
 
     //add the elements to the div
     urlDiv.appendChild(urlText)

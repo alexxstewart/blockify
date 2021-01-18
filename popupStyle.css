@@ -1,13 +1,59 @@
 body {
-  background-color: black;
+  background-color: white;
   width: 500px;
   height: 500px;
 }
+
+button {
+  background-color: rgb(20, 75, 255);
+  color: white;
+  box-shadow: none;
+  border: 2px solid white;
+  border-radius: 15px;
+  padding: 10px;
+  width: 100px;
+}
+
+button:hover {
+  background-color: rgb(73, 116, 255);
+}
+
 h1 {
-  color: red;
+  color: black;
+}
+
+#list-button-div {
+  margin: auto;
+  padding: 30px;
+}
+
+#url-list {
+  background-color: rgb(230, 230, 230);
+  height: 70%;
+  width: 90%;
+  overflow-y: scroll;
+  margin: auto;
 }
 
 .url-div {
   background-color: white;
   color: black;
+  display: block;
+  width: 80%;
+  float: left;
+  margin: 10px;
+}
+
+.url-remove-button {
+  position: relative;
+  right: 0%;
+  top: 0%;
+  display: block;
+}
+
+#input-section {
+  position: relative;
+  margin: auto;
+  display: inline-block;
+  padding: 10px;
 }
