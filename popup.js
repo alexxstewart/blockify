@@ -38,11 +38,14 @@ const saveURL = () => {
     // remove the value from the input field
     document.getElementById('input-field').value = ''
 
-    // if the user saved it to the blacklist then add it to the blacklist otherwise add it to the whitelist
-    inBlackList ? blacklist.push(inputFieldValue) : whitelist.push(inputFieldValue)
+    // first check that the input value isnt null
+    if(inputFieldValue !== ''){
+        // if the user saved it to the blacklist then add it to the blacklist otherwise add it to the whitelist
+        inBlackList ? blacklist.push(inputFieldValue) : whitelist.push(inputFieldValue)
 
-    // reprint the list
-    inBlackList ? showBlackList() : showWhiteList()
+        // reprint the list
+        inBlackList ? showBlackList() : showWhiteList()
+    }
 }
 
 const createUrlElement = (text, index) => {
