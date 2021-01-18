@@ -29,6 +29,10 @@ button:focus {
   outline: none;
 }
 
+#info-text {
+  text-align: center;
+}
+
 #list-button-div {
   margin: 0 auto;
   width: 50%;

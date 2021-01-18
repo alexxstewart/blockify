@@ -8,10 +8,19 @@ const blackListButton = document.getElementById('blacklist-button')
 const whiteListButton = document.getElementById('whitelist-button')
 const saveButton = document.getElementById('save-button')
 
+// make the blacklist button green 
+blackListButton.setAttribute('id', 'selected-button')
+
+// get the text element
+const infoText = document.getElementById('info-text')
+
 // initially we start showing the blacklist
 const showBlackList = () => {
     // remove previous elements
     removeListElements()
+
+    // change the text
+    infoText.innerHTML = 'currently blocking websites on the blacklist'
 
     // make the blacklist button green and remove the id from whitelist button
     blackListButton.setAttribute('id', 'selected-button')
@@ -27,6 +36,9 @@ const showWhiteList = () => {
 
     // remove previous elements
     removeListElements()
+
+    // change the text
+    infoText.innerHTML = 'currently allowing websites on the whitelist'
 
     // make the blacklist button green and remove the id from whitelist button
     whiteListButton.setAttribute('id', 'selected-button')
