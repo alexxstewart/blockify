@@ -1,8 +1,8 @@
 
 let inBlackList = true
 
-const blacklist = []
-const whitelist = []
+let blacklist = []
+let whitelist = []
 
 // get the buttons
 const blackListButton = document.getElementById('blacklist-button')
@@ -63,12 +63,29 @@ const createUrlElement = (text, index) => {
     urlRemoveButton.setAttribute('class', 'url-remove-button')
     urlRemoveButton.innerHTML = 'Remove'
 
+    // add event listener to the button
+    urlRemoveButton.addEventListener('click', () => removeElement(text))
+
     //add the elements to the div
     urlDiv.appendChild(urlText)
     urlDiv.appendChild(urlRemoveButton)
 
     // append the div to the parent div
     parentDiv.appendChild(urlDiv)
+}
+
+const removeElement = (item) => {
+    if(inBlackList){
+        blacklist = blacklist.filter((currentItem) => {
+            return currentItem !== item
+        })
+        showBlackList()
+    }else{
+        whitelist = whitelist.filter((currentItem) => {
+            return currentItem !== item
+        })
+        showWhiteList()
+    }
 }
 
 const removeListElements = () => {
