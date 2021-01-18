@@ -1,4 +1,3 @@
-
 let inBlackList = true
 
 let blacklist = []
@@ -14,6 +13,10 @@ const showBlackList = () => {
     // remove previous elements
     removeListElements()
 
+    // make the blacklist button green and remove the id from whitelist button
+    blackListButton.setAttribute('id', 'selected-button')
+    whiteListButton.removeAttribute('id')
+
     inBlackList = true
     blacklist.forEach((item, index) => {
         createUrlElement(item, index)
@@ -24,6 +27,11 @@ const showWhiteList = () => {
 
     // remove previous elements
     removeListElements()
+
+    // make the blacklist button green and remove the id from whitelist button
+    whiteListButton.setAttribute('id', 'selected-button')
+    blackListButton.removeAttribute('id')
+
     inBlackList = false
     whitelist.forEach((item, index) => {
         createUrlElement(item, index)

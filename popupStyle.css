@@ -25,6 +25,10 @@ h1 {
   font-size: 30px;
 }
 
+button:focus {
+  outline: none;
+}
+
 #list-button-div {
   margin: 0 auto;
   width: 50%;
@@ -65,10 +69,10 @@ h1 {
   width: 65%;
 }
 
-#selected-button{
-    background-color: rgb(13, 151, 0);
+#selected-button {
+  background-color: rgb(13, 151, 0);
 }
 
-#selected-button:hover{
-    background-color: rgb(15, 180, 0);
+#selected-button:hover {
+  background-color: rgb(15, 180, 0);
 }
