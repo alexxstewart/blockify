@@ -13,6 +13,7 @@ blackListButton.setAttribute('id', 'selected-button')
 
 // get the text element
 const infoText = document.getElementById('info-text')
+const inputField = document.getElementById('input-field')
 
 // initially we start showing the blacklist
 const showBlackList = () => {
@@ -59,7 +60,7 @@ const showWhiteList = () => {
 const saveURL = () => {
 
     // get the value in the input field
-    const inputFieldValue = document.getElementById('input-field').value
+    const inputFieldValue = inputField.value
 
     // remove the value from the input field
     document.getElementById('input-field').value = ''
@@ -161,5 +162,12 @@ const getLocalSaves = () => {
 blackListButton.addEventListener('click', showBlackList)
 whiteListButton.addEventListener('click', showWhiteList)
 saveButton.addEventListener('click', saveURL)
+
+// allow for enter key presses on the input field
+inputField.addEventListener('keypress', (event) => {
+    if(event.code === "Enter"){
+        saveURL()
+    }
+})
 
 getLocalSaves()
