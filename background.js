@@ -4,6 +4,8 @@ const filter = {
   ],
 }
 
+const whitelist = ["youtube", "google", "wikipedia", "stackoverflow", "quora", "freecodecamp", "github", "goodreads"]
+
 const webRequestFlags = [
   'blocking',
 ];
@@ -11,10 +13,17 @@ const webRequestFlags = [
 window.chrome.webRequest.onBeforeRequest.addListener(
   page => {
     console.log('page blocked - ' + page.url);
-    if(page.url.includes('youtube')){
-        return {cancel: false};
+    // check that the url is in the whitelist
+    console.log(typeof page.url)
+    let flag = true
+    whitelist.forEach((item) => { page.url.includes(item) ? flag = false : null
+    })
+    console.log(flag)
+    // if the flag has been made false then we allow the request otherwise block it
+    if(flag){
+        return {cancel: true}
     }else{
-        return {cancel: true};   
+        return {cancel: false}
     }
   },
   filter,
