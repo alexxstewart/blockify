@@ -2,7 +2,7 @@ const filter = {
   urls: [],
 }
 
-let inBlacklist = true
+let inBlacklist = null
 
 let whitelist = []
 let blacklist = []
@@ -14,6 +14,8 @@ const webRequestFlags = [
 window.chrome.webRequest.onBeforeRequest.addListener(
   page => {
     //we first want to check if we are in whitelist or blacklist mode
+    console.log(inBlacklist)
+    console.log(page.url)
     if(inBlacklist){
         // block all the urls that are in the blacklist
         blacklist.forEach((item) => {
@@ -21,11 +23,18 @@ window.chrome.webRequest.onBeforeRequest.addListener(
                 return {cancel: true}
             }
         })
+        console.log('in blacklist state')
     }else{
+        console.log('in whitelist state')
         // check that the url is in the whitelist
         let flag = true
         whitelist.forEach((item) => { page.url.includes(item) ? flag = false : null
         })
+
+        // and lastly check that the extension js and css files are not being blocked
+        if(page.url === "chrome-extension://dpmjfigagghaaeikgmjicfkneffapjjb/popup.html" || page.url === "chrome-extension://dpmjfigagghaaeikgmjicfkneffapjjb/popupStyle.css"){
+            flag = false
+        }
 
         // if the flag has been made false then we allow the request otherwise block it
         if(flag){
@@ -50,3 +59,23 @@ chrome.extension.onConnect.addListener(function(port) {
         }
     });
 })
+
+const getLocalSaves = () => {
+    chrome.storage.local.get("value",function(storageData){
+        if(storageData.value.blacklist !== null){
+            data = storageData.value
+            blacklist = data.blacklist
+            whitelist = data.whitelist
+            inBlackList = data.currentState
+            setBlackListState(inBlacklist)
+        }   
+    });
+}
+
+const setBlackListState = (state) => {
+    inBlacklist = true
+}
+
+
+// retrieve the local storage data
+getLocalSaves()
