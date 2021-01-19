@@ -1,6 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Blockify",
+  "description": "A Chrome extension to whitelist and blacklist websites to increase productivity.",
   "version": "1.0.0",
   "permissions": ["webRequest", "webRequestBlocking", "storage", "<all_urls>"],
   "browser_action": {
